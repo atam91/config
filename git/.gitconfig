@@ -1,0 +1,23 @@
+[user]
+	name = eatamanov
+	email = zh.ataman@gmail.com
+[core]
+	editor = vim
+[alias]
+    co = checkout
+    cp = cherry-pick
+    cm = commit
+    cma = commit -a
+    st = status
+    br = branch
+    hist = log --pretty=format:\"%C(yellow)%h%Creset %ad | %s%C(red bold)%d%Creset %C(blue bold)[%an]%Creset\" --graph --date=short
+    hista = log --pretty=format:\"%C(yellow)%h%Creset %ad | %s%C(red bold)%d%Creset %C(blue bold)[%an]%Creset\" --graph --date=short --all
+    type = cat-file -t
+    dump = cat-file -p
+    mergef = merge --no-ff
+    amend = commit --amend
+    hard = reset --hard
+[color]
+	ui = true
+[branch]
+	autosetuprebase = always
