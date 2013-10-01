@@ -21,3 +21,7 @@
 	ui = true
 [branch]
 	autosetuprebase = always
+[push]
+    default=current
+[http]
+	postBuffer = 524288000
