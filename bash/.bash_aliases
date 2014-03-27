@@ -11,5 +11,3 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 
 ## my special aliases
-alias cal='ncal -M'
-alias gct='ctags -f .vim_projects/pro2/tags -R --fields=+aimS --languages=php /home/zh/projects/pro2/'
