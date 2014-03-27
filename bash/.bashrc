@@ -23,5 +23,5 @@ bind '"\e[B": history-search-forward'
 bind '"\eOA": history-search-backward'
 bind '"\eOB": history-search-forward'
 
-# очищаем строку Ctrl-j
-bind '"\C-j": "\C-a\C-k"'
+# очищаем строку EscEsc
+bind '"\e\e": "\C-a\C-k"'

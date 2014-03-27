@@ -201,3 +201,7 @@ bindsym $mod+Control+l exec i3lock -c 333333
 # suspend
 bindsym $mod+Control+s exec sudo pm-suspend & i3lock -c 333333
 
+# Sound
+bindcode $mod+59 exec amixer -q set Master 5%-
+bindcode $mod+60 exec amixer -q set Master 5%+
+bindcode $mod+61 exec amixer -q set Master toggle
