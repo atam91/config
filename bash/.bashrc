@@ -24,4 +24,4 @@ bind '"\eOA": history-search-backward'
 bind '"\eOB": history-search-forward'
 
 # очищаем строку Ctrl-j
-bind '"\C-j": "\C-k \C-u"'
+bind '"\C-j": "\C-a\C-k"'
