@@ -25,3 +25,6 @@ bind '"\eOB": history-search-forward'
 
 # очищаем строку EscEsc
 bind '"\e\e": "\C-a\C-k"'
+
+# Заголовок окна терминала
+PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}${PWD}\007"'
