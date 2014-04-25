@@ -1,0 +1,10 @@
+host='033'
+
+if [[ $USER == "zh" ]]; then
+    user=$host
+elif [[ $USER == "root" ]]; then
+    user='031' #red
+else
+    user='037' #white
+fi
+. ~/.bash_envs/.tpl

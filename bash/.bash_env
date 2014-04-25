@@ -60,20 +60,14 @@
 host=`hostname`
 user=$USER
 
-# check env directory
-if [ ! -d ~/.bash_envs/ ]; then
-    mkdir ~/.bash_envs/
+# take or create settings
+if [ ! -f ~/.bash_envs/$host ]; then
+    if [ -f /home/zh/.bash_envs/$host ]; then
+        ln -s /home/zh/.bash_envs/$host ~/.bash_envs/$host
+    else
+        cp ~/.bash_envs/.default ~/.bash_envs/$host
+    fi
 fi
-
-# check settings
-if [ ! -f ~/.bash_envs/$user@$host ]; then
-    echo "user_color='033'" > ~/.bash_envs/$user@$host
-    echo "at_color='033;1'" >> ~/.bash_envs/$user@$host
-    echo "host_color='033'" >> ~/.bash_envs/$user@$host
-    echo "colon_color='037;1'" >> ~/.bash_envs/$user@$host
-    echo "path_color='037'" >> ~/.bash_envs/$user@$host
-    echo "dollar_color='033'" >> ~/.bash_envs/$user@$host
-fi
-. ~/.bash_envs/$user@$host 
+. ~/.bash_envs/$host
 
 export PS1='\[\e[0;'$user_color'm\]\u\[\e[00m\]\[\e[0;'$at_color'm\]@\[\e[00m\]\[\e[0;'$host_color'm\]\h\[\e[00m\]\[\e[0;'$colon_color'm\]:\[\e[00m\]\[\e[0;'$path_color'm\]\w\[\e[00m\]\[\e[0;'$dollar_color'm\]\$\[\e[00m\] '
