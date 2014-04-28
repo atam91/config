@@ -11,3 +11,4 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 
 ## my special aliases
+alias cpar='cp -r * .[0-9a-zA-Z]*'
