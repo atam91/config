@@ -152,6 +152,8 @@ bar {
         }
 }
 
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
 
 ## My init ##
 
