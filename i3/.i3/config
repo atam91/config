@@ -110,6 +110,26 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+bindsym $mod+t workspace Tea
+bindsym $mod+y workspace Yo
+bindsym $mod+u workspace Uno
+bindsym $mod+i workspace Inf
+bindsym $mod+o workspace Ops
+bindsym $mod+p workspace Pss
+bindsym $mod+m workspace Mus
+bindsym $mod+h workspace Hi
+
+bindsym $mod+Shift+t move container to workspace Tea
+bindsym $mod+Shift+y move container to workspace Yo
+bindsym $mod+Shift+u move container to workspace Uno
+bindsym $mod+Shift+i move container to workspace Inf
+bindsym $mod+Shift+o move container to workspace Ops
+bindsym $mod+Shift+p move container to workspace Pss
+bindsym $mod+Shift+m move container to workspace Mus
+bindsym $mod+Shift+h move container to workspace Hi
+
+
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -150,12 +170,15 @@ bar {
         colors {
             background #444444
         }
+	tray_output eDP-1
 }
 
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 ## My init ##
+#notifications
+exec dunst 
 
 ## disable screen off
 exec xset -dpms
@@ -171,22 +194,30 @@ exec xsetroot -solid "#333333"
 exec_always setxkbmap -layout "us,ru" -option "grp:alt_shift_toggle,grp_led:scroll,terminate:ctrl_alt_bksp"
 
 ## xrandr
-exec_always xrandr --output VGA1 --auto --primary --output HDMI1 --auto --right-of VGA1
+#exec_always xrandr --output eDP-1 --auto --primary --output DP-1 --auto --right-of eDP-1 --output HDMI-1 --auto --same-as eDP-1
+##exec_always xrandr --output eDP-1 --auto --primary --output DP-1 --auto --right-of eDP-1
+#exec_always xrandr --output eDP-1 --auto --primary --output DP-1 --auto --left-of eDP-1
+#####exec_always xrandr --output eDP-1 --auto --primary --output DP-1 --auto --same-as eDP-1
+###exec_always xrandr --output eDP-1 --auto --primary --output HDMI-1 --auto --same-as eDP-1
 
 
 ## My config ##
 workspace_auto_back_and_forth yes
 
-workspace 1 output VGA1
-workspace 2 output VGA1
-workspace 3 output VGA1
-workspace 4 output VGA1
+set $primary eDP-1
+set $vga DP-1
+set $hdmi HDMI-1
+
+workspace 1 output eDP-1
+workspace 2 output eDP-1
+workspace 3 output eDP-1
+workspace 4 output eDP-1
 ##workspace 5 output VGA1
 ##workspace 6 output HDMI1
-workspace 7 output HDMI1
-workspace 8 output HDMI1
-workspace 9 output HDMI1
-workspace 10 output HDMI1
+#workspace 7 output DP-1
+#workspace 8 output DP-1
+#workspace 9 output DP-1
+#workspace 10 output DP-1
 
 
 ## My keybindings ##
@@ -194,16 +225,33 @@ workspace 10 output HDMI1
 bindsym $mod+Control+Left workspace prev
 bindsym $mod+Control+Right workspace next
 
-bindsym $mod+Shift+Control+Left move workspace to output VGA1
-bindsym $mod+Shift+Control+Right move workspace to output HDMI1
+bindsym $mod+Shift+Control+Left move workspace to output $vga
+bindsym $mod+Shift+Control+Right move workspace to output $vga
+bindsym $mod+Shift+Control+Up move workspace to output $hdmi
+bindsym $mod+Shift+Control+Down move workspace to output $primary
 
 
 # screen lock
 bindsym $mod+Control+l exec i3lock -c 333333
 # suspend
-bindsym $mod+Control+s exec sudo pm-suspend & i3lock -c 333333
+bindsym $mod+Control+s exec sudo systemctl suspend & i3lock -c 333333
 
 # Sound
 bindcode $mod+59 exec amixer -q set Master 5%-
 bindcode $mod+60 exec amixer -q set Master 5%+
-bindcode $mod+61 exec amixer -q set Master toggle
+bindcode $mod+61 exec amixer -q set Master toggle && amixer -q set Headphone on && amixer -q set Speaker on;
+bindcode 122 exec amixer -q set Master 5%-
+bindcode 123 exec amixer -q set Master 5%+
+bindcode 121 exec amixer -q set Master toggle && amixer -q set Headphone on && amixer -q set Speaker on;
+
+# monitor brightness
+bindsym $mod+F11 exec ~/tbright.sh minus
+bindsym $mod+F12 exec ~/tbright.sh plus
+
+bindsym $mod+F6 exec ~/touchpad_toggle.sh
+
+
+
+bindsym Print exec --no-startup-id "scrot -e 'source dimensiFunc.sh; xclipImage $f'"
+bindsym $mod+Print --release exec --no-startup-id "scrot -u -e 'source dimensiFunc.sh; xclipImage $f'" 
+bindsym $mod+Shift+Print --release exec --no-startup-id "scrot -s -e 'source dimensiFunc.sh; xclipImage $f'"
